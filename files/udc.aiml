@@ -1,7 +1,604 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aiml>
-  <category>
-    <pattern>*</pattern>
-    <template>I have no answer for that.</template>
-  </category>
+
+
+<category><pattern>START</pattern>
+<set name="topic">Isi Data</set>
+<template>
+Nama anda <get name="nama"/>, 
+Hape <get name="hape"/>,
+Email <get name="email"/>, 
+Untuk mengganti atau mengisi data, Ketik ISI DATA
+atau
+Ketik MENU untuk langsung menuju Menu Virtual Asistensi</template>
+</category>
+
+<category><pattern>ISI DATA</pattern>
+<template>Oke kita isi data ya, Nama Lengkap Siapa ?</template>
+</category>
+
+<category><pattern>*</pattern>
+<that>^ NAMA LENGKAP SIAPA ^</that>
+<template>Nama : <set name="nama"><star/></set> , Emailnya apa ?</template>
+</category>
+
+<category><pattern>*</pattern>
+<that>^ EMAILNYA APA ^</that>
+<template>Email : <set name="email"><star/></set> , Nomor hape berapa ?</template>
+</category>
+
+<category><pattern>*</pattern>
+<that>^ NOMOR HAPE BERAPA ^</that>
+<template>Email : <set name="hape"><star/></set> , oke data sudah terisi
+Nama anda <get name="nama"/>, 
+Hape <get name="hape"/>,
+Email <get name="email"/>, 
+<srai>MENU</srai>
+</template>
+</category>
+
+
+<topic name="Isi Data">
+<category><pattern>MENU</pattern>
+<template>
+Pesan Tiket Pesawat : ketik `PESAN TIKET PESAWAT`
+Pesan Kamar Hotel : Ketik `PESAN KAMAR HOTEL` 
+Pesan Makanan : Ketik `PESAN MAKANAN`
+Cari Kado : Ketik `CARI KADO` 
+Pesan Tempat Restaurant : Ketik `PESAN TEMPAT RESTAURANT` 
+Cari Mobil : Ketik `CARI MOBIL` 
+Cari Kos : Ketik `CARI KOS` 
+Cari investasi Property : Ketik `CARI INVESTASI PROPERTY` 
+Cari Jodoh : Ketik `CARI JODOH` 
+Tanya Info Lalu Lintas : Ketik `TANYA INFO LALU LINTAS` 
+</template>
+</category>
+</topic>
+
+<category><pattern>*</pattern>
+<template>Layanan Virtual Assistant, Ketik `Start` untuk memulai. 
+Perhatikan Format  Tulisan, apps akan bekerja apabila format request penulisan sesuai dengan yang diminta
+masih bingung menggunakan ? Ketik `HELP` untuk mendapatkan bantuan
+Catatan: Ini masih berupa demo apps,
+Developed By Kukuh TW @kukuhtw 
+</template>
+</category>
+
+<category><pattern>MENU</pattern>
+<template>
+Pesan Tiket Pesawat : ketik `PESAN TIKET PESAWAT`
+Pesan Kamar Hotel : Ketik `PESAN KAMAR HOTEL` 
+Pesan Makanan : Ketik `PESAN MAKANAN`
+Cari Kado : Ketik `CARI KADO` 
+Pesan Tempat Restaurant : Ketik `PESAN TEMPAT RESTAURANT` 
+Cari Mobil : Ketik `CARI MOBIL` 
+Cari Kos : Ketik `CARI KOS` 
+Cari investasi Property : Ketik `CARI INVESTASI PROPERTY` 
+Cari Jodoh : Ketik `CARI JODOH` 
+Tanya Info Lalu Lintas : Ketik `TANYA INFO LALU LINTAS` 
+</template>
+</category>
+
+<category><pattern>HELP</pattern>
+<template>
+Petunjuk Cara menggunakan. Ketik sesuai dengan kebutuhan anda
+
+Pesan Tiket Pesawat : ketik `PESAN TIKET PESAWAT`
+Pesan Makanan : Ketik `PESAN MAKANAN`
+Cari Kado : Ketik `CARI KADO` 
+Pesan Kamar Hotel : Ketik `PESAN KAMAR HOTEL` 
+Pesan Tempat Restaurant : Ketik `PESAN TEMPAT RESTAURANT` 
+Cari Mobil : Ketik `CARI MOBIL` 
+Cari Kos : Ketik `CARI KOS` 
+Cari investasi Property : Ketik `CARI INVESTASI PROPERTY` 
+Cari Jodoh : Ketik `CARI JODOH` 
+Tanya Info Lalu Lintas : Ketik `TANYA INFO LALU LINTAS` 
+
+Sebelum memulai , pastikan data nama, email dan hape anda sudah terdaftar,
+disystem agar kami dapat melakukan follow up dan memberikan jawaban segera
+
+Data profile yang terekam saat ini adalah
+Nama <get name="nama"/> 
+Hape <get name="hape"/> 
+Email <get name="email"/>
+apabila data diatas ini masih kosong, atau anda ingin perbaiki , ketik `START` untuk memulai
+
+</template>
+</category>
+
+<category><pattern>VIRTUAL ASSISTANT</pattern>
+<template>sebelum memulai perkenalkan dahulu 
+NAMA , EMAIL, HAPE  agar dapat difollow up segera.
+
+Data Profile saat ini
+Nama <get name="nama"/> Hape <get name="hape"/> Email <get name="email"/>
+
+Bila data diatas masih kosong, isi data dengan cara
+ketik dengan format seperti ini : 
+Nama ______ Hape ______ Email ______
+
+Contoh
+NAMA John Doe HAPE 0812XXXXXXX EMAIL Jdoe@example.com
+
+Bila anda sudah pernah mengisi data tersebut anda bisa langsung
+pilih keperluan anda dibawah ini
+
+Pesan Tiket Pesawat ? 
+Pesan Kamar Hotel ?
+Pesan Tiket Kereta ?
+Pesan Makanan ?
+Cari Kado ? 
+Pesan Tempat Restaurant ? 
+Cari Mobil ?
+Cari Kos ? 
+Cari Investasi Property ?
+Cari Jodoh ?
+Tanya Info Lalu Lintas
+
+Ketik `HELP` bila masih bingung menggunakan Apps ini
+</template>
+</category>
+
+<category><pattern>NAMA * HAPE * EMAIL *</pattern>
+<template>
+Nama anda <set name="nama"><star/></set>, 
+Hape <set name="hape"><star index="2"/></set>,
+Email <set name="email"><star index="3"/></set>, 
+
+Ada yang bisa kami bantu ? 
+
+Pesan Tiket Pesawat ? 
+Pesan Kamar Hotel ?
+Pesan Tiket Kereta ?
+Pesan Makanan ?
+Cari Kado ? 
+Pesan Tempat Restaurant ? 
+Cari Mobil ?
+Cari Kos ? 
+Cari Investasi Property ?
+Cari Jodoh ?
+Tanya Info Lalu Lintas
+
+
+</template>
+</category>
+
+
+<category><pattern>PESAN TIKET PESAWAT DARI * KE * UNTUK * JUMLAH PENUMPANG * CATATAN * </pattern>
+<template>Anda memesan tiket pesawat dari <set name="dari"><star/></set> ke <set name="ke"><star index="2"/></set>,
+untuk <set name="hari"><star index="3"/></set>, 
+jumlah penumpang : <set name="jumlahpenumpang"><star index="4"/></set>, 
+catatan : <set name="catatan"><star index="5"/></set>,
+Ketik PESAN TIKET PESAWAT OKE bila sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+<category><pattern>PESAN TIKET PESAWAT</pattern>
+<template>
+<set name="topic">Pesan Tiket Pesawat</set>
+Oke, Berangkat dari kota mana ?
+</template>
+</category>
+
+
+<topic name="Pesan Tiket Pesawat">
+<category><pattern>PESAN TIKET PESAWAT OKE</pattern>
+<template>Siap Bos, kami akan segera 
+carikan Tiket Pesawat sesuai permintaan,
+kami akan follow up ke email <get name="email"/> 
+dan nomor hape <get name="hape"/>
+Berikut data anda:
+Anda memesan tiket pesawat dari <get name="dari"/> ke <get name="ke"/>,
+untuk <get name="hari"/>, 
+jumlah penumpang : <get name="jumlahpenumpang"/>, 
+catatan : <get name="catatan"/>,
+INI DEMO PROTOTYPE APPS... ....
+LAYANAN INI MASIH DEMO PROTOTYPE 
+<set name="topic"></set>
+</template>
+</category>
+
+<category><pattern>*</pattern>
+<that>^ BERANGKAT DARI KOTA MANA ^</that>
+<template>Berangkat dari <set name="dari"><star/></set> , Tujuan kemana ?</template>
+</category>
+
+<category><pattern>*</pattern>
+<that>^ TUJUAN KEMANA ^</that>
+<template><set name="ke"><star/></set> untuk tanggal berapa ?</template>
+</category>
+
+<category><pattern>*</pattern>
+<that>^ UNTUK TANGGAL BERAPA ^ </that>
+<template>Tanggal reservasi <set name="hari"><star/></set>, Jumlah Penumpang ?</template>
+</category>
+
+<category><pattern>*</pattern>
+<that>^ JUMLAH PENUMPANG ^</that>
+<template>Jumlah penumpang : <set name="jumlahpenumpang"><star/></set>, tulis Catatan Khusus  ?</template>
+</category>
+
+
+<category><pattern>*</pattern>
+<that>^ JUMLAH PENUMPANG ^ CATATAN KHUSUS ^</that>
+<template><set name="catatan"><star/></set>, oke data sudah diisi,
+Berikut data anda:
+Anda memesan tiket pesawat dari <get name="dari"/> ke <get name="ke"/>,
+untuk <get name="hari"/>, 
+jumlah penumpang : <get name="jumlahpenumpang"/>, 
+catatan : <get name="catatan"/>,
+Ketik PESAN TIKET PESAWAT OKE bila sudah benar, ulangi bila belum benar atau ada koreksi.
+Cara Mengulang Ketik PESAN TIKET PESAWAT
+</template>
+</category>
+
+</topic>
+
+
+<category><pattern>PESAN KAMAR HOTEL</pattern>
+<template>
+<set name="topic">Pesan Kamar Hotel</set>
+Hotel di area lokasi kota mana ?
+</template>
+</category>
+
+<topic name="Pesan Kamar Hotel">
+
+<category><pattern>*</pattern>
+<that>^ HOTEL DI AREA LOKASI KOTA MANA ^</that>
+<template>Lokasi Hotel :<set name="areahotel"><star/></set> , Tanggal Checkin Kapan ?</template>
+</category>
+
+
+<category><pattern>*</pattern>
+<that>^ TANGGAL CHECKIN KAPAN ^</that>
+<template>Checkin Date:<set name="checkin"><star/></set> , Tanggal Checkout Kapan ?</template>
+</category>
+
+
+
+<category><pattern>*</pattern>
+<that>^ TANGGAL CHECKOUT KAPAN ^</that>
+<template>Checkout Date:<set name="checkout"><star/></set> , Jumlah Tamu berapa ?</template>
+</category>
+
+
+<category><pattern>*</pattern>
+<that>^ JUMLAH TAMU BERAPA ^</that>
+<template>Jumlah Tamu : <set name="jumlahtamu"><star/></set> , Budget Menginap berapa ?</template>
+</category>
+
+<category><pattern>*</pattern>
+<that>^ BUDGET MENGINAP BERAPA ^</that>
+<template>Budget menginap : <set name="budgethotel"><star/></set> , Catatan Tambahan ?</template>
+</category>
+
+
+<category><pattern>*</pattern>
+<that>^ CATATAN TAMBAHAN ^</that>
+<template>Catatan Tambahan : <set name="catatanpesanhotel"><star/></set> , oke data sudah diisi,
+Berikut data anda:
+Anda mencari Hotel area <get name="areahotel"/>,
+Checkin: <get name="checkin"/>,
+Checkout: <get name="checkout"/>,
+Jumlah Tamu : <get name="jumlahtamu"/>,
+Budget : <get name="budgethotel"/>,
+catatan : <get name="catatanpesanhotel"/>,
+Ketik PESAN KAMAR HOTEL OKE bila sudah benar, ulangi bila belum benar atau ada koreksi,
+cara mengulang ketik PESAN KAMAR HOTEL
+</template>
+</category>
+
+</topic>
+
+<category><pattern>PESAN KAMAR HOTEL FULL SYNTAX</pattern>
+<template>ketik dengan format sebagai berikut: 
+PESAN KAMAR HOTEL DI ______ CHECKIN DD/MM/YYYY CHECKOUT DD/MM/YYYY JUMLAH TAMU ___ BUDGET _______ CATATAN _______
+Sebagai Contoh : 
+PESAN KAMAR HOTEL DI Area Senayan-Slipi-Sudirman CHECKIN 01/05/2016 CHECKOUT 03/05/2016 JUMLAH TAMU 4 BUDGET Rp 8,000,000 CATATAN ada Wifi dan bebas 3in1
+</template>
+</category>
+
+<category><pattern>PESAN KAMAR HOTEL DI * CHECKIN * CHECKOUT * JUMLAH TAMU * BUDGET * CATATAN *</pattern>
+<template>Anda mencari Hotel area <set name="areahotel"><star/></set>,
+Checkin: <set name="checkin"><star index="2"/></set>
+Checkout: <set name="checkout"><star index="3"/></set>
+Jumlah Tamu : <set name="jumlahtamu"><star index="4"/></set>
+Budget : <set name="budgethotel"><star index="5"/></set>
+catatan : <set name="catatanpesanhotel"><star index="6"/></set>
+Ketik PESAN KAMAR HOTEL OKE bila sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+<category><pattern>PESAN KAMAR HOTEL OKE</pattern>
+<template>Sip Bos, kami akan usahakan segera 
+mencari hotel yang cocok dan sesuai budget,
+kami akan follow up ke email <get name="email"/>
+dan nomor hape <get name="hape"/>,
+Berikut data anda:
+Anda mencari Hotel area <get name="areahotel"/>,
+Checkin: <get name="checkin"/>,
+Checkout: <get name="checkout"/>,
+Jumlah Tamu : <get name="jumlahtamu"/>,
+Budget : <get name="budgethotel"/>,
+catatan : <get name="catatanpesanhotel"/>,
+INI DEMO PROTOTYPE APPS...
+</template>
+</category>
+
+
+
+<category><pattern>PESAN TIKET KERETA</pattern>
+<template>Ketik dengan Format Sbb : 
+PESAN TIKET KERETA dari ______ ke ______ untuk DD/MM/YYYY Jumlah Tiket ______ Catatan ______
+Sebagai Contoh: 
+PESAN TIKET KERETA dari Jakarta ke Jogjakarta untuk 02/05/2016 Jumlah Tiket 8 Catatan Jam keberangkatan paling pagi,
+kelas bisnis
+</template>
+</category>
+
+<category><pattern>PESAN TIKET KERETA DARI * KE * UNTUK * JUMLAH TIKET * CATATAN *</pattern>
+<template>Anda memesan Tiket Kereta dari <set name="dari"><star/></set> ke <set name="ke"><star index="2"/></set>,
+untuk <set name="hari"><star index="3"/></set>, jumlah penumpang : <set name="jumlahpenumpang"><star index="4"/></set>, catatan : <set name="catatan"><star index="5"/></set>,
+Ketik PESAN TIKET KERETA OKE bila sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+
+<category><pattern>PESAN TIKET KERETA OKE</pattern>
+<template>Oke Bos, Kami akan segera carikan Tiket Kereta sesuai pesanan, 
+kami akan follow up ke email <get name="email"/> dan nomor hape <get name="hape"/>,
+INI DEMO PROTOTYPE APPS...  LAYANAN INI MASIH DEMO PROTOTYPE ..... RENCANANYA AKAN CONNECTING TO API FOR KERETA
+
+</template>
+</category>
+
+<category><pattern>PESAN MAKANAN</pattern>
+<template>Ketik dengan Format Sbb : 
+PESAN MAKANAN ______ DIKIRIM KE ______ 
+sebagai contoh: 
+PESAN MAKANAN Rujak Buah Campur, Martabak Telor 3 kotak, Minuman Juice Alpukat 1 DIKIRM KE Gedung Jaya Lantai 14 Nomor 14202 PT Pembangunan Sejahtera 
+</template>
+</category>
+
+<category><pattern>PESAN MAKANAN * DIKIRIM KE *</pattern>
+<template>Anda memesan <set name="pesanan"><star/></set>, minta dikirim ke <set name="alamat"><star index="2"/></set>,
+Ketik PESAN MAKANAN OKE bila sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+<category><pattern>PESAN MAKANAN OKE</pattern>
+<template>Oke Bos, Kami akan segera carikan pesanan anda, 
+kami akan follow up ke email <get name="email"/> dan nomor hape <get name="hape"/>,
+INI DEMO PROTOTYPE APPS... .... LAYANAN INI MASIH DEMO PROTOTYPE ..... RENCANANYA AKAN CONNECTING TO GO-FOOD .....
+<get name="pesanan"/> DIKIRIM KE <get name="alamat"/>
+</template>
+</category>
+
+<category><pattern>CARI KADO</pattern>
+<template>Cari Kado untuk Pasangan ? untuk anak ? untuk rekan kerja ?, bingung nggak ada ide ?
+serahkan ke kami saja, kami akan bantu carikan dan kirim ke alamat penerima kado anda,
+Ketik dengan Format Sbb :
+CARI KADO UNTUK ________  JENIS KELAMIN ______ UMUR ______ ALAMAT PENERIMA ______ BUDGET ______
+Sebagai Contoh :
+CARI KADO UNTUK Mrs AweSoMe JENIS KELAMIN Wanita UMUR 21 tahun ALAMAT PENERIMA Apartment SouthPark Tower 2 Floor 15th No1505, BUDGET Rp 3,000,000
+</template>
+</category>
+
+<category><pattern>CARI KADO UNTUK * JENIS KELAMIN * UMUR * ALAMAT PENERIMA * BUDGET *</pattern>
+<template>Anda mencari kado untuk <set name="namapenerima"><star/></set>, 
+Jenis Kelamin <set name="genderpenerima"><star index="2"/></set>,
+umur <set name="umurpenerima"><star index="3"/></set> 
+Alamat Penerima <set name="alamatpenerima"><star index="4"/></set>,
+Budget <set name="budget"><star index="5"/></set> ,
+Ketik CARI KADO OKE bila sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+<category><pattern>CARI KADO OKE</pattern>
+<template>Sip Bos, kami akan usahakan segera mencari kado yang cocok untuk <get name="namapenerima"/>, sesuai dengan budget <get name="budget"/>,
+kami akan follow up ke email <get name="email"/> dan nomor hape <get name="hape"/>,
+INI DEMO PROTOTYPE APPS... LAYANAN INI MASIH DEMO PROTOTYPE ..... RENCANANYA AKAN CONNECTING TO ONLINE STORE/ECOMMERCE ....
+</template>
+</category>
+
+
+
+<category><pattern>PESAN TEMPAT RESTAURANT</pattern>
+<template>Ketik dengan format sbb : 
+PESAN TEMPAT RESTAURANT LOKASI ______ UNTUK ____ PADA DD/MM/YYYY JAM ___ CATATAN _____
+Sebagai Contoh:
+PESAN TEMPAT RESTAURANT LOKASI AweSome Steak Jakarta Utara UNTUK 17 Orang PADA 01/05/2016 JAM 12:00am CATATAN Ruangan tertutup Tidak Boleh ada Rokok 
+</template>
+</category>
+
+<category><pattern>PESAN TEMPAT RESTAURANT LOKASI * UNTUK * PADA * JAM * CATATAN *</pattern>
+<template>Anda melakukan reservasi restaurant di
+Lokasi : <set name="lokasiresto"><star/></set>
+Jumlah : <set name="jumlahpenggunaresto"><star index="2"/></set>
+Pada : <set name="wakturesto"><star index="3"/></set>
+Jam : <set name="jamresto"><star index="4"/></set>
+Catatan : <set name="catatanresto"><star index="5"/></set>
+Ketik PESAN TEMPAT RESTAURANT OKE bila sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+<category><pattern>PESAN TEMPAT RESTAURANT OKE</pattern>
+<template>Sip Bos, kami akan usahakan segera memesankan restaurant <get name="lokasiresto"/>,
+pada <get name="wakturesto"/> Jam <get name="jamresto"/>
+kami akan follow up ke email <get name="email"/> dan nomor hape <get name="hape"/>,
+INI DEMO PROTOTYPE APPS... RENCANANYA AKAN CONNECTING TO BOOKING RESTAURANT  ....
+</template>
+</category>
+
+<category><pattern>CARI MOBIL</pattern>
+<template>Ketik dengan format Sbb:
+CARI MOBIL ______ (isi dengan BARU/BEKAS) BUDGET ______ ANGSURAN _____ (nominal dalam bulanan) DOWN PAYMENT _____ CATATAN ____
+sebagai contoh
+CARI MOBIL Baru BUDGET Rp 200,000,000 ANGSURAN Rp 4,000,000 DOWN PAYMENT Rp 30,000,000 CATATAN Segala Merk, kapasitas diatas 1,000 cc
+atau 
+CARI MOBIL Bekas BUDGET Rp 50,000,000 ANGSURAN Rp 0 DOWN PAYMENT Rp 50,000,000 CATATAN Segala Merk, Bensin bisa premium
+</template>
+</category>
+
+<category><pattern>CARI MOBIL * BUDGET * ANGSURAN * DOWN PAYMENT * CATATAN *</pattern>
+<template>Anda mencari mobil <set name="mobilbarubekas"><star/></set>
+Budget : <set name="budgetmobil"><star index="2"/></set>
+Angsuran : <set name="angsuranmobil"><star index="3"/></set> perbulan
+Down Payment : <set name="dpmobil"><star index="4"/></set>
+Catatan : <set name="catatanmobil"><star index="5"/></set>
+Ketik CARI MOBIL OKE bila sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+<category><pattern>CARI MOBIL OKE</pattern>
+<template>Sip Bos, kami akan usahakan segera mencarikan mobil yang cocok
+kami akan follow up ke email <get name="email"/> dan nomor hape <get name="hape"/>,
+INI DEMO PROTOTYPE APPS... RENCANANYA AKAN DIPROSES MANUAL...
+</template>
+</category>
+
+<category><pattern>CARI KOS</pattern>
+<template>Ketik dengan format Sbb:
+CARI KOS LOKASI _____ BUDGET _____ (nominal bulanan) CATATAN  _____ 
+Contoh
+CARI KOS LOKASI sekitar Kemang BUDGET Rp 3,000,000 CATATAN khusus perempuan saja, ada AC ada WIFI
+</template>
+</category>
+
+<category><pattern>CARI KOS LOKASI * BUDGET * CATATAN  *</pattern>
+<template>Anda mencari tempat kos lokasi <set name="lokasikos"><star/></set>
+Budget : <set name="budgetkos"><star index="2"/></set> per-bulan
+Catatan : <set name="catatankos"><star index="3"/></set>
+Ketik CARI KOS OKE bila sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+<category><pattern>CARI KOS OKE</pattern>
+<template>Sip Bos, kami akan usahakan segera mencarikan tempat kos yang asyik
+kami akan follow up ke email <get name="email"/> dan nomor hape <get name="hape"/>,
+INI DEMO PROTOTYPE APPS... RENCANANYA AKAN DIPROSES MANUAL...
+</template>
+</category>
+
+<category><pattern>CARI INVESTASI PROPERTI</pattern>
+<template><srai>CARI INVESTASI PROPERTY</srai></template>
+</category>
+
+<category><pattern>CARI INVESTASI PROPERTY</pattern>
+<template>Ketik dengan format Sbb:
+CARI INVESTASI PROPERTY ______ (isi dengan Apartment/Rumah/Tanah/Ruko/Rukan/Gudang) LOKASI _______ BUDGET ________ CATATAN ______
+Contoh 
+CARI INVESTASI PROPERTY Tanah LOKASI Tangerang BUDGET Rp 5,000,000,000 CATATAN Akan digunakan sebagai perkebunan cabe
+</template>
+</category>
+
+<category><pattern>CARI INVESTASI PROPERTI * LOKASI * BUDGET * CATATAN *</pattern>
+<template><srai>CARI INVESTASI PROPERTY * LOKASI * BUDGET * CATATAN *</srai></template>
+</category>
+
+<category><pattern>CARI INVESTASI PROPERTY * LOKASI * BUDGET * CATATAN *</pattern>
+<template>Anda mencari Investasi Property <set name="investasiproperti"><star/></set>
+Lokasi : <set name="lokasiinvestasi"><star index="2"/></set>
+Budget : <set name="budgetinvestasi"><star index="3"/></set>
+Catatan : <set name="catataninvestasi"><star index="4"/></set>
+Ketik CARI INVESTASI PROPERTY OKE bila sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+<category><pattern>CARI INVESTASI PROPERTI OKE</pattern>
+<template><srai>CARI INVESTASI PROPERTY OKE</srai></template>
+</category>
+
+<category><pattern>CARI INVESTASI PROPERTY OKE</pattern>
+<template>Sip Bos, kami akan usahakan segera mencarikan investasi properti <get name="investasiproperti"/>
+di <get name="lokasiinvestasi"/> dengan Budget <get name="budgetinvestasi"/>
+kami akan follow up ke email <get name="email"/> dan nomor hape <get name="hape"/>,
+INI DEMO PROTOTYPE APPS... RENCANANYA AKAN DIPROSES MANUAL...
+</template>
+</category>
+
+<category><pattern>^ CARI PACAR ^</pattern>
+<template><srai>CARI JODOH</srai></template>
+</category>
+
+<category><pattern>^ NYARI PACAR ^</pattern>
+<template><srai>CARI JODOH</srai></template>
+</category>
+
+
+<category><pattern>CARI JODOH</pattern>
+<template>Ketik dengan format Sbb:
+SAYA GENDER _____ (isi dengan Pria/Wanita) UMUR ______ KOTA ______ AGAMA ______ MENDAMBAKAN _______
+Contoh 
+SAYA GENDER Wanita UMUR 31 tahun KOTA Bandung AGAMA Islam MENDAMBAKAN Pria 30-40 tahun, Punya account Telegram, Mapan, pintar masak air panas
+</template>
+</category>
+
+<category><pattern>SAYA GENDER * UMUR * KOTA * AGAMA * MENDAMBAKAN *</pattern>
+<template>Anda mencari Pasangan Hidup, 
+Jenis Kelamin Anda : <set name="carijodohgender"><star index="1"/></set>
+Umur Anda : <set name="carijodohumur"><star index="2"/></set>
+Domisili Kota saat ini : <set name="carijodohkota"><star index="3"/></set>
+Agama Anda : <set name="carijodohagama"><star index="4"/></set>
+Mendambakan : <set name="carijodohagama"><star index="5"/></set>
+Ketik CARI JODOH OKE bila sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+<category><pattern>CARI JODOH OKE</pattern>
+<template>Oke Bos, data disimpan, apabila ada yang cocok akan segera dikabari
+kami akan follow up ke email <get name="email"/> dan nomor hape <get name="hape"/>
+INI DEMO PROTOTYPE APPS... ..
+</template>
+</category>
+
+<category><pattern>TANYA INFO LALULINTAS</pattern>
+<template><srai>TANYA INFO LALU LINTAS</srai></template>
+</category>
+
+<category><pattern>TANYA INFO LALU LINTAS</pattern>
+<template>Mau Pulang/Pergi menuju suatu tempat ? takut kena macet, tanya dengan format seperti ini
+DARI _______ KE _________  TANYA ______________
+contoh sebagai berikut
+DARI Pondok Indah Mall 2 KE ICE BSD City TANYA Naik KRL caranya gimana ?
+Atau
+DARI Pondok Indah Mall 2 KE ICE BSD City TANYA Rute tersingkat tanpa kena macet 
+</template>
+</category>
+
+
+<category><pattern>DARI * KE * TANYA *</pattern>
+<template>Anda bertanya Info Lalulintas
+Dari : <set name="infolldari"><star index="1"/></set>
+Ke : <set name="infollke"><star index="2"/></set>
+Pertanyaan : <set name="infolltanya"><star index="3"/></set>,
+Ketik TANYA INFO LALU LINTAS OKE bila pertanyaan sudah benar, ulangi bila belum benar atau ada koreksi
+</template>
+</category>
+
+<category><pattern>TANYA INFO LALULINTAS OKE</pattern>
+<template><srai>TANYA INFO LALU LINTAS OKE</srai></template>
+</category>
+
+<category><pattern>TANYA INFO LALU LINTAS OKE</pattern>
+<template>Oke Bos, kami akan cari jawabannya segera, apabila sudah tersedia informasinya , akan segera dikabari
+kami akan follow up ke email <get name="email"/> dan nomor hape <get name="hape"/>
+INI DEMO PROTOTYPE APPS... ..
+</template>
+</category>
+
+<category><pattern>THANKS</pattern>
+<template>Sama-Sama :)</template></category>
+
+<category><pattern>MBUHLAH</pattern>
+<template>Ciee Ngambek ...</template></category>
+
+<category><pattern>DESKRIPSI</pattern>
+<template>
+Layanan Virtual Assistant yang akan membantu Pesan Tiket Kereta ,Pesan Makanan, Cari Kado, Pesan Kamar Hotel, Pesan Tempat Restaurant, Cari Mobil, Cari Kos,Cari investasi Property,Cari Jodoh,Tanya Info Lalu Lintas.Aplikasi ini Masih berupa Demo Prototype.Mencari Partner Bisnis yang bersedia menjalankan dan mengelola
+</template></category>
+
+
+
 </aiml>
